@@ -1,0 +1,9 @@
+# OS / tooling junk
+.DS_Store
+.wrangler/
+
+# Kept locally for deploy/source, not needed in the repo
+logo.png
+CNAME
+.nojekyll
+*.pdf

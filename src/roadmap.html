@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="assets/icons/favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+<meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
+<title>خارطة طريق التعلّم — مبادرة تعلَّم الذكاء الاصطناعي</title>
+<meta name="description" content="٢٨ رابطًا رسميًّا من Anthropic و OpenAI و Google و IBM و Microsoft، مرتّبةٌ على سبعة أيّام، للتعمّق بعد الكتيّب.">
+
+<!-- Open Graph / Social sharing -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://taalmai.com/roadmap.html">
+<meta property="og:title" content="مبادرة تعلَّم — خارطة الطريق">
+<meta property="og:description" content="٢٨ رابطًا رسميًّا من Anthropic و OpenAI و Google و IBM و Microsoft، مرتّبةٌ على سبعة أيّام.">
+<meta property="og:image" content="https://taalmai.com/assets/social/og-roadmap.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:site_name" content="تعلَّم">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="مبادرة تعلَّم — خارطة الطريق">
+<meta name="twitter:description" content="٢٨ رابطًا رسميًّا من Anthropic و OpenAI و Google و IBM و Microsoft، مرتّبةٌ على سبعة أيّام.">
+<meta name="twitter:image" content="https://taalmai.com/assets/social/og-roadmap.png">
+
+<!-- Theme init (runs before paint to prevent flash) -->
+<script>
+(function(){
+  try{
+    var qp = new URLSearchParams(location.search).get('theme');
+    var v = (qp==='light'||qp==='dark') ? qp : localStorage.getItem('taalmai-theme');
+    var pref = (v==='light'||v==='dark'||v==='system') ? v : 'light';
+    var media = window.matchMedia('(prefers-color-scheme: dark)');
+    var dark = pref==='dark' || (pref==='system' && media.matches);
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme-pref', pref);
+  }catch(e){}
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary:#1F3055;
+    --primary-dark:#101D38;
+    --primary-soft:#EAE6F0;
+    --accent:#E07A4B;
+    --accent-soft:#FBEEE6;
+    --gold:#E8B14E;
+    --gold-soft:#FCF1DA;
+    --bg:#FBFAF7;
+    --surface:#FFFFFF;
+    --text:#1A2238;
+    --text-soft:#4F5874;
+    --text-muted:#7A8298;
+    --border:#E5E1D8;
+    --shadow:0 1px 2px rgba(26,34,56,.04), 0 8px 24px rgba(26,34,56,.06);
+    /* Provider colors */
+    --c-anthropic:#D4A27F;
+    --c-openai:#10A37F;
+    --c-google:#4285F4;
+    --c-microsoft:#00A4EF;
+    --c-ibm:#0F62FE;
+    --c-deeplearning:#0066CC;
+    --c-saudi:#006C35;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'IBM Plex Sans Arabic','Tajawal',system-ui,-apple-system,sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased;
+  }
+  .container{max-width:920px;margin:0 auto;padding:0 24px}
+  .section{padding:36px 0}
+
+  /* Top nav */
+  .topnav{position:sticky;top:0;z-index:100;background:rgba(250,248,245,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:14px 0}
+  .topnav-inner{max-width:920px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .topnav-brand{font-weight:700;font-size:18px;color:var(--primary-dark);display:flex;align-items:center;gap:10px}
+  .topnav-brand .logo{height:30px;width:auto;border-radius:0;background:transparent;display:block;flex-shrink:0}
+  .topnav-days{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+  .topnav-days a{width:30px;height:30px;display:grid;place-items:center;border-radius:50%;text-decoration:none;color:var(--text-soft);font-weight:600;font-size:13px;border:1px solid var(--border);transition:all .15s}
+  .topnav-days a:hover{background:var(--accent);color:white;border-color:var(--accent)}
+  .topnav-days .booklet-link{width:auto;padding:0 12px;font-size:12px;background:var(--primary);color:white;border-color:var(--primary)}
+  .topnav-days .booklet-link:hover{background:var(--primary-dark);border-color:var(--primary-dark)}
+  @media(max-width:640px){.topnav-days a{width:26px;height:26px;font-size:12px}.topnav-brand{font-size:15px}}
+
+  /* Cover */
+  .cover{background:linear-gradient(135deg,var(--accent) 0%,#B9603B 100%);color:white;padding:72px 24px 64px;text-align:center;position:relative;overflow:hidden}
+  .cover .badge{display:inline-block;background:rgba(242,217,160,.15);border:1px solid rgba(242,217,160,.35);color:#F2D9A0;font-size:13px;font-weight:600;padding:6px 16px;border-radius:999px;margin-bottom:20px;letter-spacing:.5px}
+  .cover h1{font-family:'Tajawal','IBM Plex Sans Arabic',sans-serif;font-size:58px;font-weight:900;line-height:1.15;margin-bottom:14px}
+  .cover .subtitle{font-size:20px;font-weight:400;opacity:.94;max-width:640px;margin:0 auto 28px}
+  .cover .stats{display:inline-flex;gap:22px;flex-wrap:wrap;justify-content:center;padding:12px 24px;border:1px solid rgba(255,255,255,.3);border-radius:999px;font-size:14px}
+  .cover .stats span{display:flex;align-items:center;gap:8px}
+  .cover .stats strong{color:#F2D9A0}
+  @media(max-width:640px){.cover{padding:56px 20px}.cover h1{font-size:40px}.cover .subtitle{font-size:17px}}
+
+  /* Intro */
+  .intro h2{font-family:'Tajawal',sans-serif;font-size:30px;font-weight:700;color:var(--primary-dark);margin-bottom:16px}
+  .intro p{font-size:17px;color:var(--text-soft);margin-bottom:12px;line-height:1.9}
+  .intro .lead{font-size:18px;color:var(--text);font-weight:500}
+  .intro-card{margin-top:24px;padding:20px 26px;background:var(--gold-soft);border-right:4px solid var(--gold);border-radius:12px}
+  .intro-card h3{color:#705A00;font-size:16px;margin-bottom:8px;font-weight:700}
+  .intro-card p{font-size:15px;color:#5A4500;margin:0;line-height:1.7}
+  .intro-card code{background:rgba(0,0,0,.08);padding:2px 6px;border-radius:4px;font-size:13px}
+
+  /* Legend */
+  .legend{margin-top:32px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 24px;box-shadow:var(--shadow)}
+  .legend h3{font-family:'Tajawal',sans-serif;font-size:18px;color:var(--primary-dark);margin-bottom:14px}
+  .legend-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+  .legend-chip{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--bg);border-radius:8px;font-size:14px}
+  .legend-chip .dot{width:12px;height:12px;border-radius:3px;flex-shrink:0}
+  .chip-anthropic .dot{background:var(--c-anthropic)}
+  .chip-openai .dot{background:var(--c-openai)}
+  .chip-google .dot{background:var(--c-google)}
+  .chip-microsoft .dot{background:var(--c-microsoft)}
+  .chip-ibm .dot{background:var(--c-ibm)}
+  .chip-deeplearning .dot{background:var(--c-deeplearning)}
+  .chip-saudi .dot{background:var(--c-saudi)}
+
+  /* Day section */
+  .day-section{background:var(--surface);border-radius:20px;padding:32px 36px;margin:24px auto;max-width:920px;box-shadow:var(--shadow);border:1px solid var(--border);page-break-inside:avoid}
+  .day-section-header{display:flex;align-items:center;gap:18px;margin-bottom:24px;padding-bottom:18px;border-bottom:2px dashed var(--border)}
+  .day-num{flex-shrink:0;width:62px;height:62px;border-radius:16px;background:linear-gradient(135deg,var(--accent) 0%,#B9603B 100%);color:white;display:grid;place-items:center;font-family:'Tajawal',sans-serif;font-weight:900;font-size:30px;line-height:1;box-shadow:0 6px 18px rgba(43,179,160,.25)}
+  .day-title{flex:1}
+  .day-title h2{font-family:'Tajawal',sans-serif;font-size:24px;font-weight:700;color:var(--primary-dark);line-height:1.3;margin-bottom:4px}
+  .day-title .subtitle{font-size:14px;color:var(--text-soft)}
+
+  /* Task table */
+  .task-table{width:100%;border-collapse:separate;border-spacing:0}
+  .task-table th{font-family:'Tajawal',sans-serif;text-align:right;padding:12px 14px;background:var(--primary-soft);color:var(--primary-dark);font-weight:600;font-size:13px;letter-spacing:.3px}
+  .task-table th:first-child{border-radius:0 8px 8px 0}
+  .task-table th:last-child{border-radius:8px 0 0 8px;width:90px;text-align:center}
+  .task-table tr{transition:background .12s}
+  .task-table tr:hover{background:var(--bg)}
+  .task-table td{padding:14px;border-bottom:1px solid var(--border);vertical-align:middle;font-size:15px}
+  .task-table td.task-name{font-weight:600;color:var(--text);min-width:200px}
+  .task-table td.source-cell{position:relative}
+  .task-table td.source-cell a{color:var(--primary);text-decoration:underline;text-decoration-color:rgba(31,48,85,.3);text-underline-offset:3px;font-size:14.5px;display:inline-block;line-height:1.5}
+  .task-table td.source-cell a:hover{text-decoration-color:var(--primary)}
+  .task-table td.provider{font-size:13px;font-weight:600;white-space:nowrap}
+  .task-table td.provider .p-dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-left:8px;vertical-align:middle}
+  .task-table td.time{text-align:center;color:var(--text-muted);font-size:13px;font-weight:500;white-space:nowrap}
+  .provider-anthropic{color:#8B5E3C}
+  .provider-anthropic .p-dot{background:var(--c-anthropic)}
+  .provider-openai{color:#0a7d63}
+  .provider-openai .p-dot{background:var(--c-openai)}
+  .provider-google{color:#1a5dc8}
+  .provider-google .p-dot{background:var(--c-google)}
+  .provider-microsoft{color:#0073b3}
+  .provider-microsoft .p-dot{background:var(--c-microsoft)}
+  .provider-ibm{color:#0848b0}
+  .provider-ibm .p-dot{background:var(--c-ibm)}
+  .provider-deeplearning{color:#004d99}
+  .provider-deeplearning .p-dot{background:var(--c-deeplearning)}
+  .provider-saudi{color:#005026}
+  .provider-saudi .p-dot{background:var(--c-saudi)}
+
+  .day-section-tip{margin-top:18px;padding:12px 16px;background:var(--accent-soft);border-radius:8px;font-size:13.5px;color:#7A3413;border-right:3px solid var(--accent)}
+
+  /* Closing */
+  .closing{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);color:white;padding:64px 24px;text-align:center;margin-top:40px}
+  .closing h2{font-family:'Tajawal',sans-serif;font-size:36px;font-weight:900;margin-bottom:14px}
+  .closing p{font-size:17px;opacity:.85;max-width:580px;margin:0 auto 14px;line-height:1.8}
+  .closing .cta{display:inline-block;margin-top:18px;background:white;color:var(--primary-dark);padding:13px 28px;border-radius:999px;text-decoration:none;font-weight:700;font-size:15px}
+  .closing .credit{margin-top:36px;font-size:13px;opacity:.55}
+  .closing .credit a{color:#F2D9A0;text-decoration:none;border-bottom:1px solid rgba(242,217,160,.4)}
+
+  /* ===== Mobile responsive ===== */
+  @media(max-width:768px){
+    .container{padding:0 18px}
+    .section{padding:28px 0}
+    .day-section{padding:26px 22px;border-radius:18px;margin:18px auto}
+    .day-section-header{gap:14px;margin-bottom:20px;padding-bottom:16px}
+    .day-num{width:54px;height:54px;border-radius:13px;font-size:26px}
+    .day-title h2{font-size:21px;line-height:1.35}
+    .day-title .subtitle{font-size:13px}
+    .day-section-tip{font-size:13px;padding:10px 14px}
+    .intro h2{font-size:26px}
+    .intro p{font-size:15.5px}
+    .intro .lead{font-size:16.5px}
+    .intro-card{padding:16px 20px}
+    .intro-card h3{font-size:15px}
+    .intro-card p{font-size:14px}
+    .legend{padding:16px 20px}
+    .legend h3{font-size:16px}
+    .legend-grid{grid-template-columns:1fr 1fr;gap:6px}
+    .legend-chip{font-size:12.5px;padding:6px 9px}
+  }
+
+  @media(max-width:480px){
+    body{font-size:15px}
+    .container{padding:0 14px}
+    .section{padding:22px 0}
+    .topnav{padding:11px 0}
+    .topnav-brand{font-size:14px;gap:8px}
+    .topnav-brand .logo{width:26px;height:26px;font-size:13px}
+    .topnav-days{gap:5px}
+    .cover{padding:48px 18px 44px}
+    .cover .badge{font-size:11.5px;padding:5px 13px;margin-bottom:16px}
+    .cover h1{font-size:34px;line-height:1.2}
+    .cover .subtitle{font-size:15.5px;line-height:1.7}
+    .cover .stats{padding:11px 18px;font-size:11.5px;gap:12px;flex-direction:column;align-items:flex-start;border-radius:18px}
+    .intro h2{font-size:22px}
+    .intro p{font-size:15px;line-height:1.85}
+    .intro .lead{font-size:16px}
+    .intro-card{padding:14px 16px}
+    .intro-card p{font-size:13.5px;line-height:1.75}
+    .intro-card code{font-size:12px}
+    .legend{padding:14px 16px}
+    .legend h3{font-size:15px}
+    .legend-grid{grid-template-columns:1fr;gap:5px}
+    .legend-chip{font-size:11.5px;padding:6px 9px}
+    .day-section{padding:22px 18px;border-radius:16px;margin:16px auto}
+    .day-section-header{gap:12px;margin-bottom:18px;padding-bottom:14px}
+    .day-num{width:48px;height:48px;border-radius:11px;font-size:22px}
+    .day-title h2{font-size:18px;line-height:1.35;margin-bottom:3px}
+    .day-title .subtitle{font-size:12.5px;line-height:1.5}
+
+    /* Transform table into stacked cards */
+    .task-table{display:block}
+    .task-table thead{display:none}
+    .task-table tbody{display:block}
+    .task-table tr{display:block;border:1.5px solid var(--border);border-radius:11px;padding:14px;margin-bottom:10px;background:var(--surface);transition:none}
+    .task-table tr:hover{background:var(--surface)}
+    .task-table td{display:block;border:none;padding:0;font-size:14px;line-height:1.65}
+    .task-table td.task-name{font-size:15px;font-weight:700;color:var(--primary-dark);margin-bottom:8px;padding-left:0}
+    .task-table td.source-cell{margin-bottom:8px}
+    .task-table td.source-cell a{font-size:13.5px}
+    .task-table td.provider{display:inline-flex;align-items:center;font-size:12px;margin-left:8px}
+    .task-table td.provider .p-dot{margin-left:6px}
+    .task-table td.time{display:inline-block;font-size:11.5px;background:var(--accent-soft);color:#7A3413;padding:3px 9px;border-radius:6px;font-weight:600;text-align:right}
+    .task-table td.time::before{content:""}
+
+    .day-section-tip{font-size:12.5px;padding:10px 13px;line-height:1.7;margin-top:14px}
+    .closing{padding:48px 20px}
+    .closing h2{font-size:26px}
+    .closing p{font-size:14.5px;line-height:1.8}
+    .closing .cta{padding:11px 22px;font-size:14px}
+    .closing .credit{font-size:12px;margin-top:28px}
+  }
+
+  /* Print */
+  @media print{
+    @page{size:A4;margin:14mm 12mm}
+    body{background:white;font-size:10pt}
+    .topnav{display:none}
+    .section{padding:18px 0}
+    .container{padding:0}
+    .cover{padding:36px 20px;border-radius:0;page-break-after:always;min-height:80vh;display:flex;flex-direction:column;justify-content:center}
+    .cover h1{font-size:48pt}
+    .day-section{page-break-inside:avoid;page-break-before:auto;box-shadow:none;border:1px solid #ddd;padding:18px 22px;margin:12px auto}
+    .task-table td{padding:10px;font-size:10.5pt}
+    .task-table th{padding:8px 10px;font-size:10pt}
+    .closing{page-break-before:always;border-radius:0;padding:48px 20px}
+    .cover, .day-num, .legend, .intro-card, .closing, .task-table th, .day-section-tip{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    a{color:inherit}
+    .task-table td.source-cell a{text-decoration:underline}
+  }
+/* =================================================================
+     DARK MODE — long-reading comfort, brand-aligned
+     ================================================================= */
+  [data-theme="dark"]{
+    --bg:#1a1817;
+    --surface:#23211e;
+    --primary:#7B9BC8;
+    --primary-dark:#A0BEDC;
+    --primary-soft:rgba(123,155,200,.10);
+    --accent:#F0A075;
+    --accent-soft:rgba(240,160,117,.10);
+    --gold:#F2C45F;
+    --gold-soft:rgba(248,205,107,.10);
+    --text:#e8e4dc;
+    --text-soft:#a8a39a;
+    --text-muted:#76716a;
+    --border:#2e2b27;
+    --shadow:0 1px 2px rgba(0,0,0,.40), 0 8px 24px rgba(0,0,0,.45);
+    color-scheme:dark;
+  }
+
+  /* Branded gradient surface — closing keeps deep purple in dark mode */
+  [data-theme="dark"] .closing{background:linear-gradient(135deg,#1F3055 0%,#0F1626 100%)}
+
+  body, .topnav, .topnav-days a, .day-section, .legend, .legend-chip,
+  .intro-card, .task-table tr, .task-table th, .task-table td,
+  .day-section-tip, .theme-toggle-btn, .theme-menu, .theme-menu button{
+    transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+  }
+  @media (prefers-reduced-motion: reduce){
+    body, .topnav, .topnav-days a, .day-section, .legend, .legend-chip,
+    .intro-card, .task-table tr, .task-table th, .task-table td,
+    .day-section-tip, .theme-toggle-btn, .theme-menu, .theme-menu button{transition:none}
+  }
+
+  /* Topnav */
+  [data-theme="dark"] .topnav{background:rgba(26,24,23,.85);border-bottom-color:var(--border)}
+  [data-theme="dark"] .topnav-brand{color:var(--primary-dark)}
+  [data-theme="dark"] .topnav-days a{background:var(--surface);color:var(--text-soft);border-color:var(--border)}
+  [data-theme="dark"] .topnav-days a:hover{background:var(--accent);color:#7A3413;border-color:var(--accent)}
+  [data-theme="dark"] .topnav-days .booklet-link{background:var(--primary);color:#0F1626;border-color:var(--primary)}
+  [data-theme="dark"] .topnav-days .booklet-link:hover{background:#b9aadb;border-color:#b9aadb}
+
+  /* Intro */
+  [data-theme="dark"] .intro h2{color:var(--primary-dark)}
+  [data-theme="dark"] .intro p{color:var(--text-soft)}
+  [data-theme="dark"] .intro .lead{color:var(--text)}
+  [data-theme="dark"] .intro-card{
+    background:rgba(248,205,107,.08);
+    border-right-color:var(--gold);
+  }
+  [data-theme="dark"] .intro-card h3{color:#F8E0A0}
+  [data-theme="dark"] .intro-card p{color:#F5D58A}
+  [data-theme="dark"] .intro-card code{background:rgba(255,255,255,.06);color:var(--accent)}
+
+  /* Legend */
+  [data-theme="dark"] .legend{background:var(--surface);border-color:var(--border)}
+  [data-theme="dark"] .legend h3{color:var(--primary-dark)}
+  [data-theme="dark"] .legend-chip{background:rgba(255,255,255,.03);color:var(--text)}
+
+  /* Day section card */
+  [data-theme="dark"] .day-section{background:var(--surface);border-color:var(--border)}
+  [data-theme="dark"] .day-section-header{border-bottom-color:var(--border)}
+  [data-theme="dark"] .day-title h2{color:var(--primary-dark)}
+  [data-theme="dark"] .day-title .subtitle{color:var(--text-soft)}
+
+  /* Task table */
+  [data-theme="dark"] .task-table th{background:rgba(123,155,200,.12);color:var(--primary-dark)}
+  [data-theme="dark"] .task-table tr:hover{background:rgba(255,255,255,.03)}
+  [data-theme="dark"] .task-table td{border-bottom-color:var(--border);color:var(--text)}
+  [data-theme="dark"] .task-table td.task-name{color:var(--text)}
+  [data-theme="dark"] .task-table td.source-cell a{color:var(--primary);text-decoration-color:rgba(123,155,200,.45)}
+  [data-theme="dark"] .task-table td.source-cell a:hover{text-decoration-color:var(--primary);color:#c4b5e0}
+  [data-theme="dark"] .task-table td.time{color:var(--text-muted)}
+
+  /* Provider text colors (lifted for dark bg readability) */
+  [data-theme="dark"] .provider-anthropic{color:#e3b896}
+  [data-theme="dark"] .provider-openai{color:#4dcfa8}
+  [data-theme="dark"] .provider-google{color:#7aa7f8}
+  [data-theme="dark"] .provider-microsoft{color:#5cc5f5}
+  [data-theme="dark"] .provider-ibm{color:#5b95ff}
+  [data-theme="dark"] .provider-deeplearning{color:#4d9bff}
+  [data-theme="dark"] .provider-saudi{color:#4dcfa8}
+
+  /* Day tip (accent-soft) */
+  [data-theme="dark"] .day-section-tip{
+    background:rgba(240,160,117,.10);
+    color:#F5C3A8;
+    border-right-color:var(--accent);
+  }
+
+  /* Mobile stacked-card variant of task-table */
+  @media(max-width:768px){
+    [data-theme="dark"] .task-table tr{background:var(--surface);border-color:var(--border)}
+    [data-theme="dark"] .task-table tr:hover{background:var(--surface)}
+    [data-theme="dark"] .task-table td.task-name{color:var(--primary-dark)}
+    [data-theme="dark"] .task-table td.time{background:rgba(240,160,117,.12);color:var(--accent)}
+  }
+
+  /* ===== Theme toggle ===== */
+  .theme-toggle{position:relative;display:inline-flex;align-items:center}
+  .theme-toggle-btn{
+    width:30px;height:30px;border-radius:50%;
+    border:1px solid var(--border);background:var(--surface);color:var(--text-soft);
+    display:grid;place-items:center;cursor:pointer;padding:0;
+    transition:background-color .15s,color .15s,border-color .15s;
+  }
+  .theme-toggle-btn:hover{background:var(--accent);color:#7A3413;border-color:var(--accent)}
+  [data-theme="dark"] .theme-toggle-btn:hover{color:#7A3413}
+  .theme-toggle-btn:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+  .theme-toggle-btn svg{width:15px;height:15px}
+  .theme-toggle-btn .ti-moon{display:none}
+  [data-theme="dark"] .theme-toggle-btn .ti-sun{display:none}
+  [data-theme="dark"] .theme-toggle-btn .ti-moon{display:block}
+  .theme-menu{
+    position:absolute;top:calc(100% + 8px);inset-inline-end:0;
+    background:var(--surface);border:1px solid var(--border);
+    border-radius:10px;padding:6px;min-width:148px;
+    box-shadow:0 8px 24px rgba(0,0,0,.12);
+    z-index:200;display:flex;flex-direction:column;gap:2px;
+  }
+  [data-theme="dark"] .theme-menu{box-shadow:0 8px 24px rgba(0,0,0,.5)}
+  .theme-menu[hidden]{display:none}
+  .theme-menu button{
+    background:none;border:none;padding:8px 12px;border-radius:7px;
+    display:flex;align-items:center;gap:10px;
+    font-family:inherit;font-size:13.5px;color:var(--text);cursor:pointer;
+    text-align:right;width:100%;
+  }
+  .theme-menu button:hover{background:var(--primary-soft);color:var(--primary-dark)}
+  .theme-menu button svg{width:15px;height:15px;color:var(--text-soft);flex-shrink:0}
+  .theme-menu button[aria-checked="true"]{color:var(--primary-dark);font-weight:600}
+  .theme-menu button[aria-checked="true"] svg{color:var(--primary)}
+  .theme-menu button[aria-checked="true"]::after{
+    content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);
+    margin-inline-start:auto;
+  }
+  @media(max-width:640px){
+    .theme-toggle-btn{width:26px;height:26px}
+    .theme-toggle-btn svg{width:13px;height:13px}
+    /* On mobile the toggle wraps to a corner; flip menu anchor so it stays in viewport */
+    .theme-menu{inset-inline-end:auto;inset-inline-start:0;max-width:calc(100vw - 24px)}
+  }
+
+  @media print{.theme-toggle{display:none !important}}
+</style>
+</head>
+<body>
+
+<!-- ===== Top Nav ===== -->
+<nav class="topnav">
+  <div class="topnav-inner">
+    <div class="topnav-brand"><img class="logo" src="assets/icons/logo.png" alt="مبادرة تعلَّم"><span>خارطة طريق التعلّم</span></div>
+    <div class="topnav-days">
+      <a href="#day-1" title="اليوم 1">١</a>
+      <a href="#day-2" title="اليوم 2">٢</a>
+      <a href="#day-3" title="اليوم 3">٣</a>
+      <a href="#day-4" title="اليوم 4">٤</a>
+      <a href="#day-5" title="اليوم 5">٥</a>
+      <a href="#day-6" title="اليوم 6">٦</a>
+      <a href="#day-7" title="اليوم 7">٧</a>
+      <a href="index.html" class="booklet-link" title="الكتيب">الكتيب</a>
+      <div class="theme-toggle">
+        <button type="button" class="theme-toggle-btn" id="themeBtn" aria-label="تبديل سمة العرض" aria-haspopup="menu" aria-expanded="false" title="السمة">
+          <svg class="ti ti-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"><path d="M12 2v3"/><path d="M12 19v3"/><path d="M4.2 4.2l2.1 2.1"/><path d="M17.7 17.7l2.1 2.1"/><path d="M2 12h3"/><path d="M19 12h3"/><path d="M4.2 19.8l2.1-2.1"/><path d="M17.7 6.3l2.1-2.1"/></g></svg>
+          <svg class="ti ti-moon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <div class="theme-menu" id="themeMenu" role="menu" hidden>
+          <button type="button" data-theme-set="light" role="menuitemradio" aria-checked="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"><path d="M12 2v3"/><path d="M12 19v3"/><path d="M4.2 4.2l2.1 2.1"/><path d="M17.7 17.7l2.1 2.1"/><path d="M2 12h3"/><path d="M19 12h3"/><path d="M4.2 19.8l2.1-2.1"/><path d="M17.7 6.3l2.1-2.1"/></g></svg>
+            <span>فاتح</span>
+          </button>
+          <button type="button" data-theme-set="dark" role="menuitemradio" aria-checked="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+            <span>داكن</span>
+          </button>
+          <button type="button" data-theme-set="system" role="menuitemradio" aria-checked="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+            <span>تلقائي</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== Cover ===== -->
+<header class="cover">
+  <div class="badge">الإصدار الأوّل · مايو ٢٠٢٦</div>
+  <h1>خارطة طريق التعلّم</h1>
+  <p class="subtitle">٢٨ رابطًا رسميًّا من كبرى شركات الذكاء الاصطناعي عالميًّا، مرتّبةٌ على الأيّام السبعة نفسها التي يغطّيها الكتيّب.</p>
+  <div class="stats">
+    <span><strong>٢٨ مصدرًا رسميًّا</strong></span>
+    <span><strong>٦ شركاتٍ عالميّة</strong></span>
+    <span><strong>روابطُ تطبيقٍ مباشرةٍ من المصدر</strong></span>
+  </div>
+</header>
+
+<!-- ===== Intro ===== -->
+<section class="section">
+  <div class="container">
+    <div class="intro">
+      <h2>كيف تستخدم هذه الخارطة</h2>
+      <p class="lead">هذه الخارطة <strong>ليست لتقرأها فقط، بل لتتفاعل معها</strong>. كلّ يومٍ من أيّام الكتيّب يقابله أربعة روابطَ هنا — من المصدر الأصليّ مباشرةً. الكتيّب يشرح، والخارطة تأخذك إلى المصدر.</p>
+      <p>افتح الكتيّب أوّلًا، أنهِ يومه، ثمّ ارجع هنا واختر رابطًا واحدًا تفتحه. لا تُحاول قراءة كلّ شيءٍ اليوم — استخدم الخارطة مرجعًا في الأشهر القادمة، لا قائمة مهامّ ليومٍ واحد.</p>
+
+      <div class="intro-card">
+        <h3>لمن لا يقرأ الإنجليزيّة بطلاقة</h3>
+        <p>أغلب الروابط بالإنجليزيّة. الحلّ بسيط: انسخ النصّ من الصفحة، والصقه في <code>claude.ai</code> أو <code>chatgpt.com</code>، واطلب «لخّص لي بالعربيّة» أو «ترجم وفسّر». هذه بحدّ ذاتها مهارةٌ تعلّمتَها في اليوم الثالث من الكتيّب، تُطبّقها فورًا.</p>
+      </div>
+
+      <div class="legend">
+        <h3>الجهات المُصدِرة (مفتاح ألوان الجدول)</h3>
+        <div class="legend-grid">
+          <div class="legend-chip chip-anthropic"><span class="dot"></span><span>Anthropic (Claude)</span></div>
+          <div class="legend-chip chip-openai"><span class="dot"></span><span>OpenAI (ChatGPT)</span></div>
+          <div class="legend-chip chip-google"><span class="dot"></span><span>Google (Gemini)</span></div>
+          <div class="legend-chip chip-microsoft"><span class="dot"></span><span>Microsoft</span></div>
+          <div class="legend-chip chip-ibm"><span class="dot"></span><span>IBM SkillsBuild</span></div>
+          <div class="legend-chip chip-deeplearning"><span class="dot"></span><span>DeepLearning.AI</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== DAY 1 ============== -->
+<section class="section" id="day-1">
+  <div class="container">
+    <article class="day-section">
+      <div class="day-section-header">
+        <div class="day-num">١</div>
+        <div class="day-title">
+          <h2>الأساسيّات — ما الذكاء الاصطناعي ومن أين بدأ</h2>
+          <div class="subtitle">رحلة التحوّل الرقميّ · أربعة مصادر رسميّة لتأسيسٍ متين</div>
+        </div>
+      </div>
+      <table class="task-table">
+        <thead><tr><th>المهمّة</th><th>المصدر الرسميّ</th><th>الجهة</th><th>الوقت</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="task-name">افهم الذكاء الاصطناعي في عشر دقائق</td>
+            <td class="source-cell"><a href="https://learn.microsoft.com/en-us/training/modules/fundamentals-generative-ai/" target="_blank" rel="noopener">Microsoft Learn: Fundamentals of Generative AI</a></td>
+            <td class="provider provider-microsoft"><span class="p-dot"></span>Microsoft</td>
+            <td class="time">٢٠ د</td>
+          </tr>
+          <tr>
+            <td class="task-name">دورة Google التأسيسيّة للأساسيّات</td>
+            <td class="source-cell"><a href="https://grow.google/ai-essentials/" target="_blank" rel="noopener">Google AI Essentials (Coursera)</a></td>
+            <td class="provider provider-google"><span class="p-dot"></span>Google</td>
+            <td class="time">٤–٦ ساعات</td>
+          </tr>
+          <tr>
+            <td class="task-name">احصل على شارة AI Fundamentals مجّانًا</td>
+            <td class="source-cell"><a href="https://skillsbuild.org/college-students/course-catalog/artificial-intelligence-fundamentals" target="_blank" rel="noopener">IBM SkillsBuild: AI Fundamentals</a></td>
+            <td class="provider provider-ibm"><span class="p-dot"></span>IBM</td>
+            <td class="time">١٠ ساعات</td>
+          </tr>
+          <tr>
+            <td class="task-name">دليل OpenAI الرسميّ للبدء مع ChatGPT</td>
+            <td class="source-cell"><a href="https://help.openai.com/en/articles/6783457-what-is-chatgpt" target="_blank" rel="noopener">OpenAI Help: Getting Started with ChatGPT</a></td>
+            <td class="provider provider-openai"><span class="p-dot"></span>OpenAI</td>
+            <td class="time">١٥ د</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="day-section-tip">ابدأ بمصدر Microsoft — فهو الأقصر والأشمل كمدخلٍ أوّل لفهم الذكاء الاصطناعي. ثمّ انتقل إلى دورة Google التأسيسيّة لتبنيَ معرفةً منهجيّةً أعمق بالأساسيّات.</div>
+    </article>
+  </div>
+</section>
+
+<!-- ============== DAY 2 ============== -->
+<section class="section" id="day-2">
+  <div class="container">
+    <article class="day-section">
+      <div class="day-section-header">
+        <div class="day-num">٢</div>
+        <div class="day-title">
+          <h2>كيف تعمل النماذج اللغويّة (LLMs)</h2>
+          <div class="subtitle">الأساس النظريّ في أبسط صورةٍ من المصدر الأصليّ</div>
+        </div>
+      </div>
+      <table class="task-table">
+        <thead><tr><th>المهمّة</th><th>المصدر الرسميّ</th><th>الجهة</th><th>الوقت</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="task-name">تعرّف على Claude من مصدره الرسميّ</td>
+            <td class="source-cell"><a href="https://www.anthropic.com/claude" target="_blank" rel="noopener">Anthropic: About Claude</a></td>
+            <td class="provider provider-anthropic"><span class="p-dot"></span>Anthropic</td>
+            <td class="time">١٠ د</td>
+          </tr>
+          <tr>
+            <td class="task-name">شاهد شرح 3Blue1Brown للنماذج اللغويّة</td>
+            <td class="source-cell"><a href="https://www.3blue1brown.com/lessons/mini-llm" target="_blank" rel="noopener">3Blue1Brown: LLMs Explained Briefly</a></td>
+            <td class="provider provider-google"><span class="p-dot"></span>3Blue1Brown</td>
+            <td class="time">٧ د</td>
+          </tr>
+          <tr>
+            <td class="task-name">ادرس مفهوم النماذج اللغويّة الكبيرة</td>
+            <td class="source-cell"><a href="https://developers.google.com/machine-learning/crash-course/llm/transformers" target="_blank" rel="noopener">Google: Introduction to Large Language Models</a></td>
+            <td class="provider provider-google"><span class="p-dot"></span>Google</td>
+            <td class="time">٢٠ د</td>
+          </tr>
+          <tr>
+            <td class="task-name">دورة Andrew Ng المجّانيّة للأساسيّات</td>
+            <td class="source-cell"><a href="https://www.deeplearning.ai/courses/ai-for-everyone/" target="_blank" rel="noopener">DeepLearning.AI: AI for Everyone</a></td>
+            <td class="provider provider-deeplearning"><span class="p-dot"></span>DeepLearning</td>
+            <td class="time">٦ ساعات</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="day-section-tip">إن كان عندك وقتٌ لمصدرٍ واحدٍ فقط، اختر دورة Andrew Ng — تُعدّ أفضل مقدّمةٍ شاملةٍ للذكاء الاصطناعي لغير التقنيّين.</div>
+    </article>
+  </div>
+</section>
+
+<!-- ============== DAY 3 ============== -->
+<section class="section" id="day-3">
+  <div class="container">
+    <article class="day-section">
+      <div class="day-section-header">
+        <div class="day-num">٣</div>
+        <div class="day-title">
+          <h2>هندسة البرومبت — اليوم الذهبيّ</h2>
+          <div class="subtitle">أهمّ يومٍ في الخارطة · مصادرُ من الشركات المُصمِّمة للنماذج نفسها</div>
+        </div>
+      </div>
+      <table class="task-table">
+        <thead><tr><th>المهمّة</th><th>المصدر الرسميّ</th><th>الجهة</th><th>الوقت</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="task-name">دليل Anthropic الرسميّ للبرومبت</td>
+            <td class="source-cell"><a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener">Anthropic: Prompt Engineering Overview</a></td>
+            <td class="provider provider-anthropic"><span class="p-dot"></span>Anthropic</td>
+            <td class="time">٣٠ د</td>
+          </tr>
+          <tr>
+            <td class="task-name">دورة Anthropic التفاعليّة (تسعة فصول)</td>
+            <td class="source-cell"><a href="https://github.com/anthropics/prompt-eng-interactive-tutorial" target="_blank" rel="noopener">Anthropic: Prompt Engineering Interactive Tutorial</a></td>
+            <td class="provider provider-anthropic"><span class="p-dot"></span>Anthropic</td>
+            <td class="time">٣–٤ ساعات</td>
+          </tr>
+          <tr>
+            <td class="task-name">دليل OpenAI لهندسة البرومبت</td>
+            <td class="source-cell"><a href="https://platform.openai.com/docs/guides/prompt-engineering" target="_blank" rel="noopener">OpenAI: Prompt Engineering Guide</a></td>
+            <td class="provider provider-openai"><span class="p-dot"></span>OpenAI</td>
+            <td class="time">٢٠ د</td>
+          </tr>
+          <tr>
+            <td class="task-name">دورة البرومبت من Andrew Ng (مجّانيّة)</td>
+            <td class="source-cell"><a href="https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/" target="_blank" rel="noopener">DeepLearning.AI: ChatGPT Prompt Engineering</a></td>
+            <td class="provider provider-deeplearning"><span class="p-dot"></span>DeepLearning</td>
+            <td class="time">١.٥ ساعة</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="day-section-tip">هذا اليوم الذهبيّ. الدورة التفاعليّة من Anthropic تُعدّ أفضل مصدرٍ مجّانيّ عالميًّا لتعلّم البرومبت. لا تُفوّتها.</div>
+    </article>
+  </div>
+</section>
+
+<!-- ============== DAY 4 ============== -->
+<section class="section" id="day-4">
+  <div class="container">
+    <article class="day-section">
+      <div class="day-section-header">
+        <div class="day-num">٤</div>
+        <div class="day-title">
+          <h2>الأدوات و Claude Skills</h2>
+          <div class="subtitle">القوالب الجاهزة + الأدوات الإنتاجيّة</div>
+        </div>
+      </div>
+      <table class="task-table">
+        <thead><tr><th>المهمّة</th><th>المصدر الرسميّ</th><th>الجهة</th><th>الوقت</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="task-name">تعرّف على Claude Skills</td>
+            <td class="source-cell"><a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview" target="_blank" rel="noopener">Anthropic: Agent Skills Overview</a></td>
+            <td class="provider provider-anthropic"><span class="p-dot"></span>Anthropic</td>
+            <td class="time">١٥ د</td>
+          </tr>
+          <tr>
+            <td class="task-name">استكشف مكتبة Anthropic الرسميّة للـSkills</td>
+            <td class="source-cell"><a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">GitHub: anthropics/skills</a></td>
+            <td class="provider provider-anthropic"><span class="p-dot"></span>Anthropic</td>
+            <td class="time">٢٠ د</td>
+          </tr>
+          <tr>
+            <td class="task-name">تصفّح OpenAI Academy</td>
+            <td class="source-cell"><a href="https://academy.openai.com" target="_blank" rel="noopener">OpenAI Academy (Free)</a></td>
+            <td class="provider provider-openai"><span class="p-dot"></span>OpenAI</td>
+            <td class="time">حسب الرغبة</td>
+          </tr>
+          <tr>
+            <td class="task-name">تعرّف على Microsoft Copilot وتدريبات AI</td>
+            <td class="source-cell"><a href="https://learn.microsoft.com/en-us/training/ai/" target="_blank" rel="noopener">Microsoft Learn: AI Training Hub</a></td>
+            <td class="provider provider-microsoft"><span class="p-dot"></span>Microsoft</td>
+            <td class="time">٣٠ د</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="day-section-tip">OpenAI Academy يحوي مساراتٍ مُصنّفةً بحسب وظيفتك (موظّف، معلّم، طالب، صاحب عملٍ صغير). ادخل المسار الأقرب إليك.</div>
+    </article>
+  </div>
+</section>
+
+<!-- ============== DAY 5 ============== -->
+<section class="section" id="day-5">
+  <div class="container">
+    <article class="day-section">
+      <div class="day-section-header">
+        <div class="day-num">٥</div>
+        <div class="day-title">
+          <h2>RAG و Connectors</h2>
+          <div class="subtitle">المعرفة الخاصّة + الذكاء الاصطناعي المُتّصل بأدواتك</div>
+        </div>
+      </div>
+      <table class="task-table">
+        <thead><tr><th>المهمّة</th><th>المصدر الرسميّ</th><th>الجهة</th><th>الوقت</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="task-name">افهم Claude Connectors (الوصلات) و MCP (المعيار التقنيّ)</td>
+            <td class="source-cell"><a href="https://support.claude.com/en/articles/14503689-mcp-connectors" target="_blank" rel="noopener">Anthropic: MCP Connectors Guide</a></td>
+            <td class="provider provider-anthropic"><span class="p-dot"></span>Anthropic</td>
+            <td class="time">١٥ د</td>
+          </tr>
+          <tr>
+            <td class="task-name">افهم ChatGPT Connectors (Apps)</td>
+            <td class="source-cell"><a href="https://help.openai.com/en/articles/11487775-connectors-in-chatgpt" target="_blank" rel="noopener">OpenAI: Connectors in ChatGPT</a></td>
+            <td class="provider provider-openai"><span class="p-dot"></span>OpenAI</td>
+            <td class="time">١٠ د</td>
+          </tr>
+          <tr>
+            <td class="task-name">استكشف NotebookLM للطلّاب</td>
+            <td class="source-cell"><a href="https://notebooklm.google/students?hl=ar" target="_blank" rel="noopener">Google NotebookLM للطلّاب (بالعربيّة)</a></td>
+            <td class="provider provider-google"><span class="p-dot"></span>Google</td>
+            <td class="time">٢٠ د</td>
+          </tr>
+          <tr>
+            <td class="task-name">ادرس مسار Google التعليميّ للذكاء التوليديّ</td>
+            <td class="source-cell"><a href="https://www.skills.google/paths/118" target="_blank" rel="noopener">Google: Introduction to Generative AI Path</a></td>
+            <td class="provider provider-google"><span class="p-dot"></span>Google</td>
+            <td class="time">ساعتان</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="day-section-tip">NotebookLM يدعم اليوم البودكاست بالعربيّة بشكلٍ كامل — وهذه ميزةٌ نادرةٌ في الأدوات العالميّة، تستحقّ التجربة.</div>
+    </article>
+  </div>
+</section>
+
+<!-- ============== DAY 6 ============== -->
+<section class="section" id="day-6">
+  <div class="container">
+    <article class="day-section">
+      <div class="day-section-header">
+        <div class="day-num">٦</div>
+        <div class="day-title">
+          <h2>الوكلاء — Cowork و Codex</h2>
+          <div class="subtitle">من المحادثة إلى التنفيذ · الموجة الجديدة</div>
+        </div>
+      </div>
+      <table class="task-table">
+        <thead><tr><th>المهمّة</th><th>المصدر الرسميّ</th><th>الجهة</th><th>الوقت</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="task-name">تعرّف على Claude Cowork</td>
+            <td class="source-cell"><a href="https://www.anthropic.com/product/claude-cowork" target="_blank" rel="noopener">Anthropic: Claude Cowork</a></td>
+            <td class="provider provider-anthropic"><span class="p-dot"></span>Anthropic</td>
+            <td class="time">١٠ د</td>
+          </tr>
+          <tr>
+            <td class="task-name">للمتقدّمين: Claude Code (CLI)</td>
+            <td class="source-cell"><a href="https://code.claude.com" target="_blank" rel="noopener">Anthropic: Claude Code Documentation</a></td>
+            <td class="provider provider-anthropic"><span class="p-dot"></span>Anthropic</td>
+            <td class="time">حسب الرغبة</td>
+          </tr>
+          <tr>
+            <td class="task-name">للمتقدّمين: Codex من OpenAI</td>
+            <td class="source-cell"><a href="https://github.com/openai/codex" target="_blank" rel="noopener">GitHub: OpenAI Codex CLI</a></td>
+            <td class="provider provider-openai"><span class="p-dot"></span>OpenAI</td>
+            <td class="time">حسب الرغبة</td>
+          </tr>
+          <tr>
+            <td class="task-name">دورات AI Agents المجّانيّة</td>
+            <td class="source-cell"><a href="https://www.deeplearning.ai/short-courses/" target="_blank" rel="noopener">DeepLearning.AI: Short Courses Hub</a></td>
+            <td class="provider provider-deeplearning"><span class="p-dot"></span>DeepLearning</td>
+            <td class="time">١–٢ ساعة لكلّ دورة</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="day-section-tip">Claude Code و Codex مخصّصان للمطوّرين — إن كنت غير تقنيّ، تكفيك قراءة الصفحة لتعرف ما هما. Cowork هو الوكيل الموجَّه لغير التقنيّين.</div>
+    </article>
+  </div>
+</section>
+
+<!-- ============== DAY 7 ============== -->
+<section class="section" id="day-7">
+  <div class="container">
+    <article class="day-section">
+      <div class="day-section-header">
+        <div class="day-num">٧</div>
+        <div class="day-title">
+          <h2>اذهب أعمق — رحلة الثلاثين يومًا</h2>
+          <div class="subtitle">شهاداتٌ معتمَدة + مكتباتٌ شاملة</div>
+        </div>
+      </div>
+      <table class="task-table">
+        <thead><tr><th>المهمّة</th><th>المصدر الرسميّ</th><th>الجهة</th><th>الوقت</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="task-name">دورة Generative AI for Everyone</td>
+            <td class="source-cell"><a href="https://www.deeplearning.ai/courses/generative-ai-for-everyone/" target="_blank" rel="noopener">DeepLearning.AI: Generative AI for Everyone (Andrew Ng)</a></td>
+            <td class="provider provider-deeplearning"><span class="p-dot"></span>DeepLearning</td>
+            <td class="time">٥ ساعات</td>
+          </tr>
+          <tr>
+            <td class="task-name">مكتبة Anthropic الرسميّة للدورات</td>
+            <td class="source-cell"><a href="https://github.com/anthropics/courses" target="_blank" rel="noopener">GitHub: anthropics/courses</a></td>
+            <td class="provider provider-anthropic"><span class="p-dot"></span>Anthropic</td>
+            <td class="time">حسب الرغبة</td>
+          </tr>
+          <tr>
+            <td class="task-name">احصل على شهادة Microsoft للذكاء الاصطناعي</td>
+            <td class="source-cell"><a href="https://www.linkedin.com/learning/paths/career-essentials-in-generative-ai-by-microsoft-and-linkedin" target="_blank" rel="noopener">Career Essentials in Generative AI (Microsoft × LinkedIn)</a></td>
+            <td class="provider provider-microsoft"><span class="p-dot"></span>Microsoft</td>
+            <td class="time">٧ ساعات</td>
+          </tr>
+          <tr>
+            <td class="task-name">استكشف جميع مهارات Google للذكاء الاصطناعي</td>
+            <td class="source-cell"><a href="https://ai.google/learn-ai-skills/" target="_blank" rel="noopener">Google: Learn AI Skills</a></td>
+            <td class="provider provider-google"><span class="p-dot"></span>Google</td>
+            <td class="time">حسب الرغبة</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="day-section-tip">دورة Andrew Ng "Generative AI for Everyone" هي أفضل دورةٍ ختاميّةٍ عالميًّا لغير التقنيّين. إن اخترتَ دورةً واحدةً فقط من الخارطة كاملةً، فلتكن هي.</div>
+    </article>
+  </div>
+</section>
+
+<!-- ===== Closing ===== -->
+<section class="closing">
+  <h2>الرحلة بدأت</h2>
+  <p>لا تُحاول إنجاز كلّ الروابط دفعةً واحدة. اختر اثنين أو ثلاثةً تعود إليها بانتظام. الدورة التي تُكملها أنفع من عشر دوراتٍ بدأتَها ولم تُنهِها.</p>
+  <p style="opacity:.65">في كلّ شهر، افتح هذه الخارطة من جديد. كلّما تقدّمت، صارت الروابط أعمق وأكثر فائدةً لك.</p>
+  <a class="cta" href="index.html">← ارجع إلى الكتيّب</a>
+  <div style="margin-top:40px;font-size:14px;line-height:1.85;opacity:.88">
+    م. علي المطرفي<br>
+    eng.motrafi@gmail.com
+  </div>
+  <div class="credit">
+    خارطة طريق «مبادرة تعلَّم الذكاء الاصطناعي» · الإصدار الأوّل · مايو ٢٠٢٦
+  </div>
+</section>
+
+<script>
+(function(){
+  var btn = document.getElementById('themeBtn');
+  var menu = document.getElementById('themeMenu');
+  if(!btn || !menu) return;
+  var media = window.matchMedia('(prefers-color-scheme: dark)');
+  function getPref(){
+    try{ var v = localStorage.getItem('taalmai-theme'); return (v==='light'||v==='dark'||v==='system') ? v : 'light'; }
+    catch(e){ return 'light'; }
+  }
+  function setPref(p){ try{ localStorage.setItem('taalmai-theme', p); }catch(e){} }
+  function apply(pref){
+    var dark = pref==='dark' || (pref==='system' && media.matches);
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme-pref', pref);
+    sync(pref);
+  }
+  function sync(pref){
+    menu.querySelectorAll('button[data-theme-set]').forEach(function(b){
+      b.setAttribute('aria-checked', String(b.dataset.themeSet === pref));
+    });
+  }
+  function open(yes){
+    if(yes){ menu.removeAttribute('hidden'); btn.setAttribute('aria-expanded','true'); }
+    else { menu.setAttribute('hidden',''); btn.setAttribute('aria-expanded','false'); }
+  }
+  btn.addEventListener('click', function(e){ e.stopPropagation(); open(menu.hasAttribute('hidden')); });
+  menu.addEventListener('click', function(e){
+    var t = e.target.closest('button[data-theme-set]'); if(!t) return;
+    var p = t.dataset.themeSet; setPref(p); apply(p); open(false);
+  });
+  document.addEventListener('click', function(e){
+    if(!btn.contains(e.target) && !menu.contains(e.target)) open(false);
+  });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') open(false); });
+  var listener = function(){ if(getPref()==='system') apply('system'); };
+  if(media.addEventListener) media.addEventListener('change', listener);
+  else if(media.addListener) media.addListener(listener);
+  sync(getPref());
+})();
+</script>
+
+</body>
+</html>
