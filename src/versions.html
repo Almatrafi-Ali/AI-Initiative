@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>سجلّ الإصدارات — مبادرة تعلَّم الذكاء الاصطناعي</title>
+<meta name="robots" content="noindex">
+<script>
+(function(){try{var qp=new URLSearchParams(location.search).get('theme');var v=(qp==='light'||qp==='dark')?qp:localStorage.getItem('taalmai-theme');var pref=(v==='light'||v==='dark'||v==='system')?v:'light';var m=window.matchMedia('(prefers-color-scheme: dark)');var d=pref==='dark'||(pref==='system'&&m.matches);document.documentElement.setAttribute('data-theme',d?'dark':'light');}catch(e){}})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Tajawal:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/icons/favicon.png">
+<style>
+  :root{
+    --navy:#1F3055; --navy-dark:#101D38; --terra:#E07A4B; --terra-soft:#FBEEE6;
+    --amber:#E8B14E; --bg:#FBFAF7; --surface:#FFFFFF; --text:#1A2238; --text-soft:#4F5874; --text-muted:#7A8298; --border:#E5E1D8;
+    --shadow:0 1px 2px rgba(26,34,56,.04), 0 8px 24px rgba(26,34,56,.06);
+  }
+  [data-theme="dark"]{
+    --navy:#b8a8e0; --navy-dark:#0F1626; --terra:#F0A075; --terra-soft:rgba(240,160,117,.10);
+    --bg:#1a1817; --surface:#23211e; --text:#e8e4dc; --text-soft:#a8a39a; --text-muted:#76716a; --border:#2e2b27;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.45); color-scheme:dark;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'IBM Plex Sans Arabic','Tajawal',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.85;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:680px;margin:0 auto;padding:0 24px}
+
+  .top{background:linear-gradient(135deg,#28406F 0%,#1F3055 52%,#0F1626 100%);color:#fff;text-align:center;padding:52px 24px 44px}
+  .top img{width:74px;height:auto;margin-bottom:18px;opacity:.97}
+  .top h1{font-family:'Tajawal',sans-serif;font-size:34px;font-weight:900;margin-bottom:8px}
+  .top p{font-size:16px;opacity:.88}
+
+  main{padding:44px 0 56px}
+  .ver{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px 28px;margin-bottom:18px;box-shadow:var(--shadow);position:relative}
+  .ver.current{border-right:5px solid var(--terra)}
+  .ver-head{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+  .ver-head h2{font-family:'Tajawal',sans-serif;font-size:22px;font-weight:700;color:var(--navy)}
+  .ver-date{font-size:14px;color:var(--text-muted)}
+  .badge-now{font-size:12px;font-weight:700;color:#fff;background:var(--terra);padding:3px 12px;border-radius:999px}
+  .ver ul{list-style:none;display:grid;gap:9px}
+  .ver li{font-size:15.5px;color:var(--text);padding-right:24px;position:relative;line-height:1.75}
+  .ver li::before{content:"";position:absolute;right:3px;top:11px;width:8px;height:8px;border-radius:50%;background:var(--terra);opacity:.7}
+
+  .gh{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--navy);color:#fff;text-decoration:none;font-weight:600;font-size:16px;padding:15px 22px;border-radius:13px;margin-top:26px;transition:opacity .15s}
+  [data-theme="dark"] .gh{color:#0F1626}
+  .gh:hover{opacity:.9}
+  .gh svg{width:22px;height:22px;fill:currentColor}
+
+  .back{display:inline-block;margin-top:22px;color:var(--terra);text-decoration:none;font-weight:600;font-size:15px}
+  .back:hover{text-decoration:underline}
+  .center{text-align:center}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <img src="assets/icons/logo.png" alt="">
+  <h1>سجلّ الإصدارات</h1>
+  <p>تطوّر مبادرة تعلَّم الذكاء الاصطناعي</p>
+</header>
+
+<div class="wrap">
+  <main>
+    <div class="ver current">
+      <div class="ver-head"><h2>الإصدار الثاني</h2><span class="ver-date">يونيو ٢٠٢٦</span><span class="badge-now">الحاليّ</span></div>
+      <ul>
+        <li>تشغيل الفيديوهات داخل الموقع مباشرةً، دون مغادرته</li>
+        <li>إعادة صياغة المقدّمة لتكون دائمةً وغير مرتبطةٍ بمناسبة</li>
+        <li>مراجعة لغويّة شاملة وتبسيط الصياغة</li>
+        <li>إضافة صفحة سجلّ الإصدارات</li>
+      </ul>
+    </div>
+
+    <div class="ver">
+      <div class="ver-head"><h2>الإصدار الأوّل</h2><span class="ver-date">مايو ٢٠٢٦</span></div>
+      <ul>
+        <li>الإطلاق الأوّل: منهج سبعة أيّام لتعلّم الذكاء الاصطناعي للمبتدئين</li>
+        <li>الكتيّب وخارطة الطريق بالمصادر الرسميّة</li>
+        <li>وضعٌ فاتح وداكن للقراءة المريحة</li>
+      </ul>
+    </div>
+
+    <a class="gh" href="https://github.com/Almatrafi-Ali/AI-Initiative" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-1.8c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2 1-.3 2-.4 3-.4s2 .1 3 .4c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+      المصدر مفتوح — تصفّح المشروع على GitHub
+    </a>
+
+    <div class="center"><a class="back" href="index.html">العودة إلى الكتيّب ←</a></div>
+  </main>
+</div>
+
+</body>
+</html>
